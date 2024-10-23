@@ -1,13 +1,13 @@
 package com.start.egor.dbexample.dao;
 
+import com.start.egor.dbexample.db.DBConnection;
 import com.start.egor.dbexample.model.Book;
 
 import java.sql.*;
 
 public class BookDaoJBDC {
     public Book findBookById(Integer bookId){
-        try (Connection connection = DriverManager
-                .getConnection("jdbc:postgresql://localhost:5433/local_db2", "postgres", "12345")) {
+        try (Connection connection = DBConnection.INSTANCE.getConnection()) {
             if (connection != null){
                 System.out.println("Мы подключились к БД");
             } else{
