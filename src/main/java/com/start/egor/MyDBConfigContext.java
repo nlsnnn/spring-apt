@@ -1,4 +1,4 @@
-package com.start.egor.dbexample;
+package com.start.egor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
