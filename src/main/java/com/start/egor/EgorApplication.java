@@ -34,6 +34,8 @@ public class EgorApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception{
 		System.out.println("test");
+
+
 //		bookDAOBean.findBookById(3);
 //		List<Book> bookList = jdbcTemplate.query("select * from books",
 //				((rs, rowNum) -> new Book(
