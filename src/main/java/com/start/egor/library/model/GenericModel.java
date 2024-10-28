@@ -5,6 +5,10 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @MappedSuperclass
 public abstract class GenericModel {
@@ -24,5 +28,4 @@ public abstract class GenericModel {
 
     @Column(name = "deleted_by")
     private Integer deletedBy;
-
 }
