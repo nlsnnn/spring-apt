@@ -1,5 +1,6 @@
 package com.start.egor.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,7 +43,13 @@ public class Book extends GenericModel {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "books")
+    @JsonIgnore
+    @JoinTable(name = "books_authors",
+            joinColumns = @JoinColumn(name = "book_id"),
+            foreignKey = @ForeignKey(name = "FK_BOOKS_AUTHORS"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"),
+            inverseForeignKey = @ForeignKey(name = "FK_AUTHORS_BOOKS"))
+    @ManyToMany
     List<Author> authors;
 }
 
