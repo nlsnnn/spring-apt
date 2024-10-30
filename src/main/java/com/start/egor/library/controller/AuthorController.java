@@ -2,6 +2,7 @@ package com.start.egor.library.controller;
 
 import com.start.egor.library.model.Author;
 import com.start.egor.library.repository.AuthorRepository;
+import com.start.egor.library.repository.GenericRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -17,18 +18,20 @@ import org.webjars.NotFoundException;
 @RestController
 @RequestMapping("/authors")
 @Tag(name = "Авторы", description = "Контроллер для работы с авторами из библиотеки")
-public class AuthorController  {
+public class AuthorController extends GenericController<Author>  {
     private final AuthorRepository authorRepository;
 
-    public AuthorController(AuthorRepository authorRepository) {
+
+    protected AuthorController(GenericRepository<Author> genericRepository, AuthorRepository authorRepository) {
+        super(genericRepository);
         this.authorRepository = authorRepository;
     }
 
-    @Operation(description = "Получить запись по Id", method = "getAuthorById")
-    @RequestMapping(value = "/getAuthorById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Author> getAuthorById(@RequestParam(value = "id") Long id){
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(authorRepository.findById(id).orElseThrow(() -> new NotFoundException("Data are not found")));
-    }
+//    @Operation(description = "Получить запись по Id", method = "getAuthorById")
+//    @RequestMapping(value = "/getAuthorById", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Author> getAuthorById(@RequestParam(value = "id") Long id){
+//        return ResponseEntity
+//                .status(HttpStatus.OK)
+//                .body(authorRepository.findById(id).orElseThrow(() -> new NotFoundException("Data are not found")));
+//    }
 }

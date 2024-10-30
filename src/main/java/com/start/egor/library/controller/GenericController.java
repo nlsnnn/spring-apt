@@ -32,7 +32,7 @@ public abstract class GenericController <T extends GenericModel> {
     }
 
     @Operation(description = "Получить все записи", method = "getAll")
-    @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<T>> getAll(){
         return ResponseEntity
                 .status(HttpStatus.OK)
