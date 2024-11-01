@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -43,7 +44,7 @@ public abstract class GenericController <T extends GenericModel> {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
                     consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<T> create(@RequestBody T newEntity){
-        newEntity.setCreatedWhen(LocalDate.now());
+        newEntity.setCreatedWhen(LocalDateTime.now());
         log.info(newEntity.toString());
         genericRepository.save(newEntity);
         return ResponseEntity

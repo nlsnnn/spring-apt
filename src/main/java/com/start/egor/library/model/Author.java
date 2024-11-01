@@ -18,7 +18,7 @@ public class Author extends GenericModel {
     private String authorName;
 
     @Column(name = "birth_date")
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 
     @Column(name = "description")
     private String description;
