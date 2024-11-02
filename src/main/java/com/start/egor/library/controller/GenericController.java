@@ -1,7 +1,9 @@
 package com.start.egor.library.controller;
 
+import com.start.egor.library.dto.GenericDTO;
 import com.start.egor.library.model.GenericModel;
 import com.start.egor.library.repository.GenericRepository;
+import com.start.egor.library.service.GenericService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,53 +19,49 @@ import java.util.List;
 
 @RestController
 @Slf4j
-public abstract class GenericController <T extends GenericModel> {
-    private final GenericRepository<T> genericRepository;
+public abstract class GenericController <E extends GenericModel, D extends GenericDTO> {
+    private final GenericService<E, D> service;
 
-    protected GenericController(GenericRepository<T> genericRepository){
-        this.genericRepository = genericRepository;
+    protected GenericController(GenericService<E, D> service) {
+        this.service = service;
     }
 
     @Operation(description = "Получить запись по ID", method = "getOne")
     @RequestMapping(value = "/getOne", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<T> getOne(@RequestParam(value = "id") Long id){
+    public ResponseEntity<D> getOne(@RequestParam(value = "id") Long id){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(genericRepository.findById(id).orElseThrow(() -> new NotFoundException("Данные по заданному ID не найдены")));
+                .body(service.getOne(id));
     }
 
     @Operation(description = "Получить все записи", method = "getAll")
     @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<T>> getAll(){
+    public ResponseEntity<List<D>> getAll(){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(genericRepository.findAll());
+                .body(service.listAll());
     }
 
     @Operation(description = "Создать запись", method = "create")
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
                     consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<T> create(@RequestBody T newEntity){
-        newEntity.setCreatedWhen(LocalDateTime.now());
-        log.info(newEntity.toString());
-        genericRepository.save(newEntity);
+    public ResponseEntity<D> create(@RequestBody D newEntity){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(newEntity);
+                .body(service.create(newEntity));
     }
 
     @Operation(description = "Обновить запись", method = "update")
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE,
                     consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<T> update(@RequestBody T updateEntity, @RequestParam(value = "id") Long id){
+    public ResponseEntity<D> update(@RequestBody D updateEntity, @RequestParam(value = "id") Long id){
         updateEntity.setId(id);
-        genericRepository.save(updateEntity);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(updateEntity);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.update(updateEntity));
     }
 
     @Operation(description = "Удалить запись", method = "delete")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable(value = "id") Long id){
-        genericRepository.deleteById(id);
+        service.delete(id);
     }
 }
