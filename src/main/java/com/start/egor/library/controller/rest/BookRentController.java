@@ -1,4 +1,4 @@
-package com.start.egor.library.controller;
+package com.start.egor.library.controller.rest;
 
 import com.start.egor.library.dto.BookRentInfoDTO;
 import com.start.egor.library.model.BookRentInfo;

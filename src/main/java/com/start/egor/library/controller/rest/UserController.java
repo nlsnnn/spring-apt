@@ -1,8 +1,7 @@
-package com.start.egor.library.controller;
+package com.start.egor.library.controller.rest;
 
 import com.start.egor.library.dto.UserDTO;
 import com.start.egor.library.model.User;
-import com.start.egor.library.repository.GenericRepository;
 import com.start.egor.library.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,7 @@
-package com.start.egor.library.controller;
+package com.start.egor.library.controller.rest;
 
 import com.start.egor.library.dto.GenericDTO;
 import com.start.egor.library.model.GenericModel;
-import com.start.egor.library.repository.GenericRepository;
 import com.start.egor.library.service.GenericService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.webjars.NotFoundException;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
