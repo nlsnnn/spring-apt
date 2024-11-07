@@ -22,13 +22,13 @@ public abstract class GenericModel {
     private LocalDateTime createdWhen;
 
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @Column(name = "deleted_when")
     private LocalDateTime deletedWhen;
 
     @Column(name = "deleted_by")
-    private Integer deletedBy;
+    private String deletedBy;
 
     @Column(name = "is_deleted")
     private boolean isDeleted;

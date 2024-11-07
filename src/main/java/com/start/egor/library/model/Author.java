@@ -23,7 +23,7 @@ public class Author extends GenericModel {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "books_authors",
                 joinColumns = @JoinColumn(name = "author_id"),
                 foreignKey = @ForeignKey(name = "FK_AUTHORS_BOOKS"),

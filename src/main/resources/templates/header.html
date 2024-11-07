@@ -1,0 +1,37 @@
+<div xmlns:th="http://www.thymleaf.org"
+     th:fragment="header">
+    <nav class="navbar navbar-expand-lg" style="background-color: blue">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand text-white">Онлайн библиотека</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportContent" aria-controls="navbarSupportContent" aria-expanded="false"
+                    aria-label="Toggle Navigation">
+                <span class="nav-bar-toggle-icon">
+
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/my/books">Книги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/my/books">Авторы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/my/books">Мои книги</a>
+                    </li>
+                </ul>
+                <div class="nav-item">
+                    <a href="/profile" class="nav-link active" aria-current="page">Профиль</a>
+                </div>
+
+                <form class="d-flex">
+                    <a href="/logout" class="btn btn-primary" role="button" aria-disabled="true">Выйти</a>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+
+</div>

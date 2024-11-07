@@ -6,8 +6,10 @@ import com.start.egor.library.model.Author;
 import com.start.egor.library.model.Book;
 import com.start.egor.library.repository.AuthorRepository;
 import com.start.egor.library.repository.BookRepository;
+import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
+@Service
 public class AuthorService extends GenericService<Author, AuthorDTO> {
     private final BookRepository bookRepository;
 

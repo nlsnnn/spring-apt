@@ -18,11 +18,8 @@ public class Book extends GenericModel {
     @Column(name = "title", nullable = false)
     private String bookTitle;
 
-    @Column(name = "publisher")
-    private String publisher;
-
-    @Column(name = "author", nullable = false)
-    private String author;
+    @Column(name = "publish")
+    private String publish;
 
     @Column(name = "publish_date", nullable = false)
     private LocalDate publishDate;
@@ -49,7 +46,7 @@ public class Book extends GenericModel {
             foreignKey = @ForeignKey(name = "FK_BOOKS_AUTHORS"),
             inverseJoinColumns = @JoinColumn(name = "author_id"),
             inverseForeignKey = @ForeignKey(name = "FK_AUTHORS_BOOKS"))
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     List<Author> authors;
 }
 
