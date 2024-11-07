@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @Slf4j
 public abstract class GenericController <E extends GenericModel, D extends GenericDTO> {
-    private final GenericService<E, D> service;
+    public final GenericService<E, D> service;
 
     protected GenericController(GenericService<E, D> service) {
         this.service = service;

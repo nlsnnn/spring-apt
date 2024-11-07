@@ -6,12 +6,14 @@ import com.start.egor.library.model.GenericModel;
 import com.start.egor.library.repository.AuthorRepository;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Component
 public class BookMapper extends GenericMapper<Book, BookDTO> {
     private final AuthorRepository authorRepository;
 
